@@ -1,0 +1,45 @@
+<section class="vh-100" style="background-color: whitesmoke;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <h3 class="mb-5">Sign in</h3>
+                        <div *ngIf="loginError" class="alert alert-danger">
+                            {{loginError}}
+                        </div>
+                        <form [formGroup]="loginForm">
+                            <div>
+                                <label class="text-danger"
+                                    *ngIf="loginForm.get('customerId')?.touched && loginForm.get('customerId')?.errors?.['required']">Customer
+                                    ID is required</label>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" formControlName="customerId" id="customerId"
+                                    class="form-control form-control" placeholder="Customer ID" />
+                            </div>
+                            <div>
+                                <label class="text-danger"
+                                    *ngIf="loginForm.get('pin')?.touched && loginForm.get('pin')?.errors?.['required']">PIN is required</label>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="password" formControlName="pin" id="pin" class="form-control form-control"
+                                    placeholder="PIN" />
+                            </div>
+                            <div class="row d-flex justify-content-center">
+                                <div class="p-2 d-flex justify-content-center">
+                                  <i class="fa fa-spinner fa-2x" aria-hidden="true" *ngIf="isLoading"></i> <span *ngIf="isLoading" class="ml-3">Please wait ...</span>
+                                </div>
+                              </div>
+                            <p>
+                                <span>Don't have an account?</span><a href="javascript:void(0);"
+                                    routerLink="/auth/register">Register</a>
+                            </p>
+                            <button (click)="login()" [disabled]="!loginForm.valid" class="btn btn-primary btn btn-block" type="submit">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

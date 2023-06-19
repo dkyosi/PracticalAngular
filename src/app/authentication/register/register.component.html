@@ -1,0 +1,73 @@
+<section class="vh-100" style="background-color: whitesmoke;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <h3 class="mb-5">Sign Up</h3>
+                        <div *ngIf="registerError" class="alert alert-danger">
+                            {{registerError}}
+                        </div>
+                        <form [formGroup]="registerForm">
+                            <div>
+                                <label class="text-danger"
+                                    *ngIf="registerForm.get('customerId')?.touched && registerForm.get('customerId')?.errors?.['required']">Customer
+                                    ID is required</label>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" formControlName="customerId" id="customerId"
+                                    class="form-control form-control" placeholder="Customer ID" />
+                            </div>
+                            <div>
+                                <label class="text-danger"
+                                    *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['required']">Email
+                                    is required</label>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="email" formControlName="email" id="email" class="form-control form-control"
+                                    placeholder="Email" />
+                            </div>
+                            <div>
+                                <label class="text-danger"
+                                    *ngIf="registerForm.get('firstName')?.touched && registerForm.get('firstName')?.errors?.['required']">First
+                                    name is required</label>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" formControlName="firstName" id="fname"
+                                    class="form-control form-control" placeholder="First Name" />
+                            </div>
+                            <div>
+                                <label class="text-danger"
+                                    *ngIf="registerForm.get('lastName')?.touched && registerForm.get('lastName')?.errors?.['required']">Last
+                                    name is required</label>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" formControlName="lastName" id="lname"
+                                    class="form-control form-control" placeholder="Last Name" />
+                            </div>
+                            <div>
+                                <label class="text-danger"
+                                    *ngIf="registerForm.get('pin')?.touched && registerForm.get('pin')?.errors?.['required']">PIN
+                                    is required</label>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="password" formControlName="pin" id="pin" class="form-control form-control"
+                                    placeholder="PIN" />
+                            </div>
+                            <div class="row d-flex justify-content-center">
+                                <div class="p-2 d-flex justify-content-center">
+                                  <i class="fa fa-spinner fa-2x" aria-hidden="true" *ngIf="isLoading"></i> <span *ngIf="isLoading" class="ml-3">Please wait ...</span>
+                                </div>
+                              </div>
+                            <p>
+                                <span>Already have an account?</span><a href="javascript:void(0);"
+                                    routerLink="/auth/login">Login</a>
+                            </p>
+                            <button (click)="register()" [disabled]="!registerForm.valid" class="btn btn-primary btn btn-block" type="submit">Create Account</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

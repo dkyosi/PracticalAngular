@@ -1,0 +1,35 @@
+<div>
+    <form action="">
+        <div class="input-group">
+            <input type="text" [(ngModel)]="searchId" class="form-control" name="search" placeholder="Search by transaction ID">
+            <div class="input-group-append">
+                <button class="btn btn-secondary" (click)="search()" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="row m-1 border-bottom p-2" *ngFor="let transaction of transactions;">
+        <div class="col">
+            <span>TRID : {{transaction.transactionId}}</span>
+        </div>
+        <div class="col">
+            <p>KSH {{transaction.amount}}</p>
+        </div>
+        <div class="col">
+            <div *ngIf="transaction.transactionType=='DEPOSIT'" class="badge badge-primary">
+                {{transaction.transactionType}}
+            </div>
+            <div *ngIf="transaction.transactionType=='WITHDRAWAL'" class="badge badge-danger">
+                {{transaction.transactionType}}
+            </div>
+        </div>
+        <div>
+            <span>{{transaction.createdAt | date:'dd/mm/yyyy h:mm a'}}</span>
+        </div>
+        <div class="col">
+            <i *ngIf="transaction.transactionType=='DEPOSIT'" class="fa fa-check-circle text-success fa-2x"></i>
+            <i *ngIf="transaction.transactionType=='WITHDRAWAL'" class="fa fa-minus-circle text-danger fa-2x"></i>
+        </div>
+    </div>
+</div>
